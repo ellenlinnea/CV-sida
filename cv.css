@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, Arial, sans-serif;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+
+  display: grid;
+  grid-template-columns: 280px 1fr; /* vänster smal, höger bred */
+  gap: 24px;
+}
+
+.header {
+  grid-column: 1 / -1; /* header över båda */
+}
+
+.sidebar {
+  background: #f5f5f5;
+}
+.main {
+  background: #fff;
+}
+
+/* Card styling - makes sections look like cards */
+.card {
+  background: white;
+  padding: 1.5rem; /* 24px - nice spacing inside cards */
+  border: 1px solid #e0e0e0; /* subtle border */
+  border-radius: 8px; /* rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+}
+
+/* Header styling */
+.header h1 {
+  font-size: 2.5rem; /* larger heading */
+  font-weight: 700; /* bold */
+  color: #333; /* dark gray */
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  color: #666; /* medium gray */
+  font-size: 1.1rem;
+}
+
+/* Link styling - makes links look nice and interactive */
+.links {
+  list-style: none; /* remove bullet points */
+  padding: 0; /* remove default padding */
+  margin: 0;
+}
+
+.links li {
+  margin-bottom: 0.5rem; /* space between links */
+}
+
+.links a {
+  color: #0066cc; /* nice blue color */
+  text-decoration: none; /* remove underline */
+  transition: color 0.2s; /* smooth color change on hover */
+}
+
+.links a:hover {
+  color: #0052a3; /* darker blue on hover */
+  text-decoration: underline; /* add underline on hover */
+}
+
+/* Avatar image - make it circular and nicely sized */
+.avatar {
+  width: 200px; /* fixed width */
+  height: 200px; /* fixed height */
+  border-radius: 50%; /* makes it circular */
+  object-fit: cover; /* ensures image fills circle nicely */
+  border: 3px solid white; /* white border around image */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  margin: 0 auto; /* centers the image */
+  display: block; /* needed for margin auto to work */
+}
+
+/* Skill pills/badges - make them look like tags */
+.pill-list {
+  list-style: none; /* remove bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex; /* makes items flow horizontally */
+  flex-wrap: wrap; /* allows wrapping to next line */
+  gap: 0.5rem; /* space between pills */
+}
+
+.pill-list li {
+  background-color: #e8f4f8; /* light blue background */
+  color: #0066cc; /* blue text */
+  padding: 0.4rem 0.8rem; /* padding inside pill */
+  border-radius: 20px; /* rounded pill shape */
+  font-size: 0.9rem; /* slightly smaller text */
+  font-weight: 500; /* medium weight */
+}
+
+/* Typography improvements */
+.card h2 {
+  font-size: 1.5rem; /* larger section headings */
+  font-weight: 600; /* semi-bold */
+  color: #333; /* dark gray */
+  margin-bottom: 1rem; /* space below heading */
+}
+
+.card h3 {
+  font-size: 1.2rem; /* slightly larger than body text */
+  font-weight: 600;
+  color: #333;
+}
+
+.meta {
+  color: #666; /* medium gray for dates */
+  font-size: 0.95rem; /* slightly smaller */
+  font-weight: 400;
+}
+
+/* Item spacing in experience/education sections */
+.item {
+  padding-bottom: 1rem; /* space between items */
+  border-bottom: 1px solid #f0f0f0; /* subtle divider line */
+}
+
+.item:last-child {
+  border-bottom: none; /* no border on last item */
+  padding-bottom: 0;
+}
+
+/* Highlight section - make it stand out */
+.highlight {
+  background-color: #f8f9fa; /* light gray background */
+  border-color: #0066cc; /* blue border */
+}
+
+/* Position of Trust list - prevent word breaking */
+.positionOfTrust {
+  list-style: none; /* remove bullet points */
+  padding: 0;
+  margin: 0;
+}
+
+.positionOfTrust li {
+  margin-bottom: 0.75rem; /* space between items */
+  word-break: normal; /* keep words together */
+  overflow-wrap: break-word; /* only break if word is too long */
+  hyphens: none; /* don't add hyphens when breaking */
+}
