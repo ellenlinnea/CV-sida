@@ -1,154 +1,447 @@
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
-  font-family: system-ui, Arial, sans-serif;
+/* ============================================================
+   CSS-VARIABLER – byt tema här, resten uppdateras automatiskt
+   ============================================================ */
+:root {
+  /* Färger – ljust läge (stilren med subtil värme + dusty rose accent) */
+  --color-bg: #f2f0ee;            /* mycket subtil varm bakgrund, nästan grå */
+  --color-surface: #ffffff;       /* vita kort – rent och luftigt */
+  --color-border: #e4e1dd;        /* neutral kant med lätt värme */
+  --color-shadow: rgba(0, 0, 0, 0.06);
+
+  --color-text: #221e1e;          /* nästan svart med allra minsta varma ton */
+  --color-text-muted: #6b6568;    /* lite varmare mellangr å */
+  --color-heading: #181214;       /* rubrik med en aning rose-underton */
+
+  --color-accent: #7a4a5e;        /* dämpad vinröd/burgundy – neutral men varm */
+  --color-accent-light: #f0eaee;  /* mycket subtil lila-grå bakgrund */
+  --color-accent-dark: #5c3347;   /* mörkare hover */
+
+  --color-divider: #ebebeb;
+
+  /* Typografi */
+  --font-body: "Segoe UI", system-ui, Arial, sans-serif;
+
+  /* Avstånd */
+  --radius: 10px;
+  --card-padding: 1.5rem;
+  --gap: 1.5rem;
+
+  /* Knapp */
+  --toggle-bg: #f0eaee;
+  --toggle-color: #7a4a5e;
 }
 
+/* Mörkt läge – mörk neutral med rose-accent */
+html.dark {
+  --color-bg: #161618;
+  --color-surface: #1e1e21;
+  --color-border: #2e2e32;
+  --color-shadow: rgba(0, 0, 0, 0.35);
+
+  --color-text: #e8e8ea;
+  --color-text-muted: #8e8e93;
+  --color-heading: #f5f5f7;
+
+  --color-accent: #b08898;        /* ljusare burgundy i mörkt läge */
+  --color-accent-light: #261a20;
+  --color-accent-dark: #c9a0b0;
+
+  --color-divider: #2a2a2e;
+
+  --toggle-bg: #261a20;
+  --toggle-color: #b08898;
+}
+
+/* ============================================================
+   ANIMATIONER
+   ============================================================ */
+
+/* Header – namn tonar + glider in uppifrån vid sidladdning */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtitle – lite fördröjd */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Kort – glider in underifrån när de scrollas in */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Startläge – sätts via JS-klassen .will-animate så CSS aldrig rör oanimerade kort */
+.card.will-animate {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* Klassen som JS lägger på när kortet syns i viewporten */
+.card.visible {
+  animation: fadeSlideUp 0.45s ease both;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+}
+
+/* Bakgrundscanvas – fylls av JS med slumpmässiga linjer */
+#bg-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================
+   LAYOUT – grid desktop (2 spalter)
+   ============================================================ */
 .page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 2rem 1.5rem;
 
   display: grid;
-  grid-template-columns: 280px 1fr; /* vänster smal, höger bred */
-  gap: 24px;
+  grid-template-columns: 270px 1fr;
+  grid-template-rows: auto 1fr;
+  gap: var(--gap);
 }
 
 .header {
-  grid-column: 1 / -1; /* header över båda */
+  grid-column: 1 / -1; /* sträcker sig över båda spalter */
 }
 
 .sidebar {
-  background: #f5f5f5;
+  display: flex;
+  flex-column: column;
+  flex-direction: column;
+  gap: var(--gap);
 }
+
 .main {
-  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
 }
 
-/* Card styling - makes sections look like cards */
-.card {
-  background: white;
-  padding: 1.5rem; /* 24px - nice spacing inside cards */
-  border: 1px solid #e0e0e0; /* subtle border */
-  border-radius: 8px; /* rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.75rem 2rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px var(--color-shadow);
+  position: relative;
 }
 
-/* Header styling */
-.header h1 {
-  font-size: 2.5rem; /* larger heading */
-  font-weight: 700; /* bold */
-  color: #333; /* dark gray */
-  margin-bottom: 0.5rem;
+.header-text h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-heading);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  animation: fadeSlideDown 0.6s ease both;
 }
 
 .subtitle {
-  color: #666; /* medium gray */
-  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  margin-top: 0.4rem;
+  min-height: 1.5em; /* håller plats medan texten skrivs ut */
 }
 
-/* Link styling - makes links look nice and interactive */
-.links {
-  list-style: none; /* remove bullet points */
-  padding: 0; /* remove default padding */
-  margin: 0;
+/* Blinkande markör efter undertiteln */
+.subtitle::after {
+  content: "|";
+  color: var(--color-accent);
+  font-weight: 300;
+  animation: blink 0.75s step-end infinite;
 }
 
-.links li {
-  margin-bottom: 0.5rem; /* space between links */
+/* Dölj markören när skrivningen är klar */
+.subtitle.done::after {
+  display: none;
 }
 
-.links a {
-  color: #0066cc; /* nice blue color */
-  text-decoration: none; /* remove underline */
-  transition: color 0.2s; /* smooth color change on hover */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
-.links a:hover {
-  color: #0052a3; /* darker blue on hover */
-  text-decoration: underline; /* add underline on hover */
+/* ============================================================
+   DARK MODE TOGGLE-KNAPP
+   ============================================================ */
+.theme-toggle {
+  background: var(--toggle-bg);
+  color: var(--toggle-color);
+  border: none;
+  border-radius: 50px;
+  padding: 0.45rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+  align-self: center;
 }
 
-/* Avatar image - make it circular and nicely sized */
-.avatar {
-  width: 200px; /* fixed width */
-  height: 200px; /* fixed height */
-  border-radius: 50%; /* makes it circular */
-  object-fit: cover; /* ensures image fills circle nicely */
-  border: 3px solid white; /* white border around image */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* subtle shadow */
-  margin: 0 auto; /* centers the image */
-  display: block; /* needed for margin auto to work */
+.theme-toggle:hover {
+  transform: scale(1.05);
+  background: var(--color-accent-light);
 }
 
-/* Skill pills/badges - make them look like tags */
-.pill-list {
-  list-style: none; /* remove bullet points */
-  padding: 0;
-  margin: 0;
-  display: flex; /* makes items flow horizontally */
-  flex-wrap: wrap; /* allows wrapping to next line */
-  gap: 0.5rem; /* space between pills */
+/* ============================================================
+   KORT (cards)
+   ============================================================ */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius);
+  padding: var(--card-padding);
+  box-shadow: 0 2px 6px var(--color-shadow);
+  transition: background 0.3s, border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  /* Överskriver Bootstrap – ser till att vår textfärg alltid gäller */
+  color: var(--color-text);
 }
 
-.pill-list li {
-  background-color: #e8f4f8; /* light blue background */
-  color: #0066cc; /* blue text */
-  padding: 0.4rem 0.8rem; /* padding inside pill */
-  border-radius: 20px; /* rounded pill shape */
-  font-size: 0.9rem; /* slightly smaller text */
-  font-weight: 500; /* medium weight */
+.card p,
+.card li,
+.card ul {
+  color: var(--color-text);
 }
 
-/* Typography improvements */
+.card:hover {
+  transform: translateY(-4px);
+  border-left-color: var(--color-accent); /* accentlinje glider in */
+  box-shadow: 0 10px 28px var(--color-shadow);
+}
+
 .card h2 {
-  font-size: 1.5rem; /* larger section headings */
-  font-weight: 600; /* semi-bold */
-  color: #333; /* dark gray */
-  margin-bottom: 1rem; /* space below heading */
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--color-heading);   /* mörk/svart istället för rose */
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-accent); /* accenten syns bara som linje */
 }
 
 .card h3 {
-  font-size: 1.2rem; /* slightly larger than body text */
+  font-size: 1rem;
   font-weight: 600;
-  color: #333;
+  color: var(--color-heading);
 }
 
-.meta {
-  color: #666; /* medium gray for dates */
-  font-size: 0.95rem; /* slightly smaller */
-  font-weight: 400;
+/* ============================================================
+   AVATAR
+   ============================================================ */
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-surface);
+  box-shadow: 0 4px 12px var(--color-shadow);
+  display: block;
+  margin: 0 auto 0.5rem;
 }
 
-/* Item spacing in experience/education sections */
+/* ============================================================
+   KONTAKTLÄNKAR
+   ============================================================ */
+.links {
+  list-style: none;
+}
+
+.links li {
+  margin-bottom: 0.45rem;
+  font-size: 0.95rem;
+}
+
+.links a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   SKILL PILLS
+   ============================================================ */
+.pill-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.pill-list li {
+  background: var(--color-accent-light);
+  color: var(--color-accent);
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+/* ============================================================
+   ERFARENHET / UTBILDNING – items
+   ============================================================ */
 .item {
-  padding-bottom: 1rem; /* space between items */
-  border-bottom: 1px solid #f0f0f0; /* subtle divider line */
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--color-divider);
 }
 
 .item:last-child {
-  border-bottom: none; /* no border on last item */
+  border-bottom: none;
   padding-bottom: 0;
 }
 
-/* Highlight section - make it stand out */
-.highlight {
-  background-color: #f8f9fa; /* light gray background */
-  border-color: #0066cc; /* blue border */
+.item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
 }
 
-/* Position of Trust list - prevent word breaking */
+.meta {
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   FÖRTROENDEUPPDRAG
+   ============================================================ */
 .positionOfTrust {
-  list-style: none; /* remove bullet points */
-  padding: 0;
-  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .positionOfTrust li {
-  margin-bottom: 0.75rem; /* space between items */
-  word-break: normal; /* keep words together */
-  overflow-wrap: break-word; /* only break if word is too long */
-  hyphens: none; /* don't add hyphens when breaking */
+  font-size: 0.9rem;
+  color: var(--color-text);
+  hyphens: auto;
+  overflow-wrap: anywhere;       /* bryt bara om ordet verkligen inte får plats */
+  word-break: normal;
+  padding: 0.5rem 0.75rem;
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-accent-light);
+  border-radius: 0 6px 6px 0;
+  transition: border-color 0.2s, background 0.2s;
+  min-width: 0;                  /* låter flexbarn krympa under sin innehållsstorlek */
+}
+
+/* ============================================================
+   HIGHLIGHT (projekt)
+   ============================================================ */
+.highlight {
+  background: var(--color-accent-light);
+  border-color: var(--color-accent);
+}
+
+.highlight a {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.highlight a:hover {
+  color: var(--color-accent-dark);
+  text-decoration: underline;
+}
+
+/* ============================================================
+   RESPONSIVITET – mobil (en spalt)
+   ============================================================ */
+@media (max-width: 700px) {
+  .page {
+    grid-template-columns: 1fr; /* en enda kolumn */
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem;
+  }
+
+  .header-text h1 {
+    font-size: 1.6rem;
+  }
+
+  .theme-toggle {
+    align-self: flex-start;
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .item-top {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .meta {
+    white-space: normal;
+  }
 }

@@ -13,11 +13,17 @@
     <link rel="stylesheet" href="cv.css" />
   </head>
   <body>
+    <canvas id="bg-canvas" aria-hidden="true"></canvas>
     <div class="page">
       <!-- Header som går över båda spalter -->
-      <header class="header d-flex flex-column mb-4">
-        <h1 class="mb-2">Linnea Schildt</h1>
-        <p class="subtitle mb-0">Systemutvecklare (.NET) • Malmö</p>
+      <header class="header">
+        <div class="header-text">
+          <h1>Linnea Schildt</h1>
+          <p class="subtitle" id="subtitle"></p>
+        </div>
+        <button class="theme-toggle" id="themeToggle" aria-label="Byt tema">
+          🌙 Mörkt läge
+        </button>
       </header>
 
       <!-- VÄNSTERSPALT (smal) -->
