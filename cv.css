@@ -176,6 +176,7 @@ body {
   border-radius: var(--radius);
   box-shadow: 0 2px 8px var(--color-shadow);
   position: relative;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 
 .header-text h1 {
@@ -456,6 +457,12 @@ body {
 /* ============================================================
    KONTAKTFORMULÄR
    ============================================================ */
+
+/* På desktop: sträck formuläret över båda kolumnerna */
+.contact-section {
+  grid-column: 1 / -1;
+}
+
 .contact-intro {
   color: var(--color-text-muted);
   font-size: 0.95rem;
@@ -586,11 +593,21 @@ body {
    RESPONSIVITET – mobil (en spalt)
    ============================================================ */
 @media (max-width: 700px) {
+  /* Byt till flex-kolumn så order fungerar på alla barn */
   .page {
-    grid-template-columns: 1fr; /* en enda kolumn */
+    display: flex;
+    flex-direction: column;
     padding: 1rem;
     gap: 1rem;
   }
+
+  /* Ordning: header → bild+kontakt → huvudinnehåll → kunskaper osv → kontakt */
+  .sidebar        { display: contents; } /* sidebar försvinner som box, barnen flödar direkt in i .page */
+  .header         { order: 0; }
+  .sidebar-top    { order: 1; }
+  .main           { order: 2; }
+  .sidebar-bottom { order: 3; }
+  .contact-section { order: 4; }
 
   .header {
     flex-direction: column;

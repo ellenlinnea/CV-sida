@@ -27,76 +27,79 @@
       </header>
 
       <!-- VÄNSTERSPALT (smal) -->
-      <aside class="sidebar d-flex flex-column">
-        <!-- Bild -->
-        <img class="avatar mb-3" src="bild.jpg" alt="Bild på mig" />
+      <aside class="sidebar">
+        <!-- Grupp 1: bild + kontakt (visas högt upp på mobil) -->
+        <div class="sidebar-top">
+          <img class="avatar mb-3" src="bild.jpg" alt="Bild på mig" />
 
-        <!-- Kontakt och länkar -->
-        <section class="card mb-3">
-          <ul class="links">
-            <li>
-              <a href="mailto:linnea.schildt1@gmail.com"
-                >linnea.schildt1@gmail.com</a
-              >
-            </li>
-            <li><a href="tel:+46708494653">0708494653</a></li>
-            <li>
-              <a
-                href="https://www.linkedin.com/in/linnea-schildt-364626303/"
-                target="_blank"
-                rel="noreferrer"
-                >LinkedIn</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://github.com/ellenlinnea"
-                target="_blank"
-                rel="noreferrer"
-                >GitHub</a
-              >
-            </li>
-          </ul>
-        </section>
+          <section class="card mb-3">
+            <ul class="links">
+              <li>
+                <a href="mailto:linnea.schildt1@gmail.com"
+                  >linnea.schildt1@gmail.com</a
+                >
+              </li>
+              <li><a href="tel:+46708494653">0708494653</a></li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/linnea-schildt-364626303/"
+                  target="_blank"
+                  rel="noreferrer"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/ellenlinnea"
+                  target="_blank"
+                  rel="noreferrer"
+                  >GitHub</a
+                >
+              </li>
+            </ul>
+          </section>
+        </div>
 
-        <!-- Tekniska kunskaper -->
-        <section class="card mb-3">
-          <h2>Tekniska kunskaper</h2>
-          <ul class="pill-list">
-            <li>C#</li>
-            <li>.NET</li>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Git</li>
-            <li>XAML</li>
-            <li>SQL</li>
-            <li>Visual Studio</li>
-            <li>VS Code</li>
-            <li>Agila metoder</li>
-          </ul>
-        </section>
+        <!-- Grupp 2: kunskaper, språk, förtroendeuppdrag (visas längre ner på mobil) -->
+        <div class="sidebar-bottom">
+          <section class="card mb-3">
+            <h2>Tekniska kunskaper</h2>
+            <ul class="pill-list">
+              <li>C#</li>
+              <li>.NET</li>
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+              <li>Git</li>
+              <li>XAML</li>
+              <li>SQL</li>
+              <li>Visual Studio</li>
+              <li>VS Code</li>
+              <li>Agila metoder</li>
+            </ul>
+          </section>
 
-        <section class="card mb-3">
-          <h2>Språk</h2>
-          <ul class="links">
-            <li>Svenska</li>
-            <li>Engelska</li>
-          </ul>
-        </section>
+          <section class="card mb-3">
+            <h2>Språk</h2>
+            <ul class="links">
+              <li>Svenska</li>
+              <li>Engelska</li>
+            </ul>
+          </section>
 
-        <section class="card mb-3">
-          <h2>Förtroendeuppdrag</h2>
-          <ul class="positionOfTrust">
-            <li>Suppleant i Snapping Turtle AB</li>
-            <li>
-              Studentrepresentant i ledningsgruppen för
-              systemutvecklarutbildningen - Newton
-            </li>
-            <li>Ledamot i Svenska Ju‑jutsuförbundets styrelse</li>
-            <li>Ledamot i Malmö Ju‑jutsuklubbs styrelse</li>
-          </ul>
-        </section>
+          <section class="card mb-3">
+            <h2>Förtroendeuppdrag</h2>
+            <ul class="positionOfTrust">
+              <li>Suppleant i Snapping Turtle AB</li>
+              <li>
+                Studentrepresentant i ledningsgruppen för
+                systemutvecklarutbildningen - Newton
+              </li>
+              <li>Ledamot i Svenska Ju‑jutsuförbundets styrelse</li>
+              <li>Ledamot i Malmö Ju‑jutsuklubbs styrelse</li>
+            </ul>
+          </section>
+        </div>
       </aside>
 
       <!-- HÖGERSPALT -->
@@ -298,56 +301,57 @@
           </div>
         </section>
 
-        <!-- Kontaktformulär -->
-        <section class="card" id="contact">
-          <h2>Kontakt</h2>
-          <p class="contact-intro">Vill du komma i kontakt? Fyll i formuläret så hör jag av mig.</p>
+      </main>
 
-          <form id="contactForm" name="kontakt" method="POST" data-netlify="true" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="contactName">Namn</label>
-                <input
-                  type="text"
-                  id="contactName"
-                  name="name"
-                  placeholder="Ditt namn"
-                  autocomplete="name"
-                />
-                <span class="form-error" id="nameError">Ange ditt namn.</span>
-              </div>
-              <div class="form-group">
-                <label for="contactEmail">E-post</label>
-                <input
-                  type="email"
-                  id="contactEmail"
-                  name="email"
-                  placeholder="din@email.se"
-                  autocomplete="email"
-                />
-                <span class="form-error" id="emailError">Ange en giltig e-postadress.</span>
-              </div>
+      <!-- Kontaktformulär – eget grid-barn så vi kan styra ordning på mobil -->
+      <section class="card contact-section" id="contact">
+        <h2>Kontakt</h2>
+        <p class="contact-intro">Vill du komma i kontakt? Fyll i formuläret så hör jag av mig.</p>
+
+        <form id="contactForm" name="kontakt" method="POST" data-netlify="true" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactName">Namn</label>
+              <input
+                type="text"
+                id="contactName"
+                name="name"
+                placeholder="Ditt namn"
+                autocomplete="name"
+              />
+              <span class="form-error" id="nameError">Ange ditt namn.</span>
             </div>
             <div class="form-group">
-              <label for="contactMessage">Meddelande</label>
-              <textarea
-                id="contactMessage"
-                name="message"
-                rows="4"
-                placeholder="Vad vill du säga?"
-              ></textarea>
-              <span class="form-error" id="messageError">Skriv ett meddelande.</span>
+              <label for="contactEmail">E-post</label>
+              <input
+                type="email"
+                id="contactEmail"
+                name="email"
+                placeholder="din@email.se"
+                autocomplete="email"
+              />
+              <span class="form-error" id="emailError">Ange en giltig e-postadress.</span>
             </div>
-            <button type="submit" class="form-submit">Skicka meddelande</button>
-          </form>
-
-          <!-- Bekräftelsemeddelande – dolt tills formuläret skickas -->
-          <div class="form-success" id="formSuccess" hidden>
-            <span class="form-success-icon">✓</span>
-            <p>Tack! Jag återkommer så snart jag kan.</p>
           </div>
-        </section>
-      </main>
+          <div class="form-group">
+            <label for="contactMessage">Meddelande</label>
+            <textarea
+              id="contactMessage"
+              name="message"
+              rows="4"
+              placeholder="Vad vill du säga?"
+            ></textarea>
+            <span class="form-error" id="messageError">Skriv ett meddelande.</span>
+          </div>
+          <button type="submit" class="form-submit">Skicka meddelande</button>
+        </form>
+
+        <!-- Bekräftelsemeddelande – dolt tills formuläret skickas -->
+        <div class="form-success" id="formSuccess" hidden>
+          <span class="form-success-icon">✓</span>
+          <p>Tack! Jag återkommer så snart jag kan.</p>
+        </div>
+      </section>
     </div>
 
     <script
