@@ -108,6 +108,12 @@ btn.addEventListener("click", () => {
   }
   // Uppdatera bakgrundslinjer med rätt färg för nytt tema
   document.dispatchEvent(new CustomEvent("themeChanged"));
+
+  // Tvinga omritning på mobil – löser bugg där headern inte uppdateras direkt
+  document.body.style.display = "none";
+  // eslint-disable-next-line no-unused-expressions
+  document.body.offsetHeight; // läs av layout för att trigga reflow
+  document.body.style.display = "";
 });
 
 
