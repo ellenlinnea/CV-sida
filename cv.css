@@ -265,12 +265,12 @@ body {
 .card h2 {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--color-heading);   /* mörk/svart istället för rose */
+  color: var(--color-heading);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--color-accent); /* accenten syns bara som linje */
+  border-bottom: 2px solid var(--color-accent);
 }
 
 .card h3 {
@@ -388,22 +388,198 @@ body {
 }
 
 /* ============================================================
-   HIGHLIGHT (projekt)
+   PROJEKTGALLERI
    ============================================================ */
-.highlight {
-  background: var(--color-accent-light);
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1rem;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px var(--color-shadow);
   border-color: var(--color-accent);
 }
 
-.highlight a {
-  color: var(--color-accent);
-  font-weight: 500;
-  text-decoration: none;
+.project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
-.highlight a:hover {
+.project-top h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-heading);
+  margin: 0;
+}
+
+.project-link {
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.project-link:hover {
   color: var(--color-accent-dark);
   text-decoration: underline;
+}
+
+.project-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  flex: 1; /* trycker pills till botten */
+  margin: 0;
+}
+
+.project-pills {
+  margin-top: auto;
+}
+
+/* ============================================================
+   KONTAKTFORMULÄR
+   ============================================================ */
+.contact-intro {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-bottom: 1rem;
+}
+
+.form-row .form-group {
+  margin-bottom: 0; /* gap i grid räcker */
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.form-group input,
+.form-group textarea {
+  background: var(--color-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  color: var(--color-text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-light);
+}
+
+/* Felmarkering */
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: #c0392b;
+}
+
+.form-error {
+  font-size: 0.8rem;
+  color: #c0392b;
+  display: none; /* visas av JS */
+}
+
+.form-error.visible {
+  display: block;
+}
+
+/* Skicka-knapp */
+.form-submit {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 0.65rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+
+.form-submit:hover {
+  background: var(--color-accent-dark);
+  transform: translateY(-2px);
+}
+
+.form-submit:active {
+  transform: translateY(0);
+}
+
+/* Bekräftelse */
+@keyframes successPop {
+  from { opacity: 0; transform: scale(0.92) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.form-success {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  background: var(--color-accent-light);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 8px;
+  animation: successPop 0.35s ease both;
+}
+
+.form-success-icon {
+  font-size: 1.3rem;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.form-success p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+/* Mobil – en kolumn */
+@media (max-width: 700px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ============================================================

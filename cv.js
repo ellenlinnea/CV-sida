@@ -9,51 +9,54 @@ function r(min, max) {
   return min + Math.random() * (max - min);
 }
 
-function drawBackground() {
-  canvas.width  = window.innerWidth;
-  canvas.height = window.innerHeight;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+// Varje linje har egna parametrar som styr rörelsen
+const lineCount = 7;
+const lines = Array.from({ length: lineCount }, (_, i) => ({
+  baseY:    (i + 1) / (lineCount + 1),  // vertikal position (0–1)
+  speed1:   0.00018 + i * 0.000045,      // hur snabbt kontrollpunkt 1 oscillerar
+  speed2:   0.00014 + i * 0.000038,      // hur snabbt kontrollpunkt 2 oscillerar
+  phase1:   i * 0.9,                     // fasförskjutning – gör att linjerna rör sig olika
+  phase2:   i * 1.4,
+  amp1:     0.18 + (i % 3) * 0.07,       // amplitud (hur mycket den böjer sig)
+  amp2:     0.15 + (i % 4) * 0.06,
+  opacity:  0.09 + (i % 3) * 0.04,
+  width:    0.7 + (i % 3) * 0.4,
+}));
+
+function drawBackground(ts = 0) {
+  const W = canvas.width  = window.innerWidth;
+  const H = canvas.height = window.innerHeight;
+  ctx.clearRect(0, 0, W, H);
 
   const isDark = document.documentElement.classList.contains("dark");
   const strokeColor = isDark ? "255,255,255" : "90,70,70";
 
-  const W = canvas.width;
-  const H = canvas.height;
+  for (const ln of lines) {
+    const y0 = H * (ln.baseY + 0.04 * Math.sin(ts * ln.speed1 + ln.phase1));
+    const y3 = H * (ln.baseY + 0.04 * Math.sin(ts * ln.speed2 + ln.phase2 + 1));
 
-  // 8 mjuka linjer som alla flödar från vänster till höger,
-  // utspridda jämnt vertikalt men med slumpmässig böj
-  const lineCount = 8;
-  for (let i = 0; i < lineCount; i++) {
-    // Startpunkt: vänster kant, jämnt utspridda med lite slump
-    const baseY = (H / (lineCount + 1)) * (i + 1);
-    const y0 = baseY + r(-H * 0.08, H * 0.08);
-    const y3 = baseY + r(-H * 0.08, H * 0.08);
-
-    // Kontrollpunkter: håller sig nära sin "spår" men med varierande vertikal böj
-    const cy1 = y0 + r(-H * 0.25, H * 0.25);
-    const cy2 = y3 + r(-H * 0.25, H * 0.25);
+    // Kontrollpunkterna oscillerar upp/ner i sin egen takt
+    const cy1 = y0 + H * ln.amp1 * Math.sin(ts * ln.speed1 * 1.3 + ln.phase1 + 2);
+    const cy2 = y3 + H * ln.amp2 * Math.sin(ts * ln.speed2 * 0.9 + ln.phase2 + 4);
 
     ctx.beginPath();
     ctx.moveTo(-10, y0);
-    ctx.bezierCurveTo(
-      W * 0.33, cy1,
-      W * 0.66, cy2,
-      W + 10,   y3
-    );
-
-    ctx.strokeStyle = `rgba(${strokeColor}, ${r(0.07, 0.18)})`;
-    ctx.lineWidth   = r(0.7, 1.8);
+    ctx.bezierCurveTo(W * 0.33, cy1, W * 0.66, cy2, W + 10, y3);
+    ctx.strokeStyle = `rgba(${strokeColor}, ${ln.opacity})`;
+    ctx.lineWidth   = ln.width;
     ctx.stroke();
   }
+
+  requestAnimationFrame(drawBackground);
 }
 
-drawBackground();
+requestAnimationFrame(drawBackground);
 
-// Rita om vid fönsterändring
-window.addEventListener("resize", drawBackground);
+// Rita om vid fönsterändring – canvas-storlek uppdateras i nästa frame automatiskt
+window.addEventListener("resize", () => {});
 
-// Rita om när temat byts (anropas igen längre ner i filen)
-document.addEventListener("themeChanged", drawBackground);
+// Temat ändras – färgen plockas direkt från classList i varje frame
+document.addEventListener("themeChanged", () => {});
 
 
 // ============================================================
@@ -136,3 +139,62 @@ const observer = new IntersectionObserver(
 );
 
 cards.forEach((card) => observer.observe(card));
+
+
+// ============================================================
+// KONTAKTFORMULÄR – validering + bekräftelse
+// ============================================================
+
+const form       = document.getElementById("contactForm");
+const nameInput  = document.getElementById("contactName");
+const emailInput = document.getElementById("contactEmail");
+const msgInput   = document.getElementById("contactMessage");
+const success    = document.getElementById("formSuccess");
+
+function validate(input, errorId, condition) {
+  const error = document.getElementById(errorId);
+  if (condition) {
+    input.classList.remove("invalid");
+    error.classList.remove("visible");
+    return true;
+  } else {
+    input.classList.add("invalid");
+    error.classList.add("visible");
+    return false;
+  }
+}
+
+// Realtidsvalidering – felmarkeringen försvinner när man rättar till det
+nameInput.addEventListener("input",  () => validate(nameInput,  "nameError",  nameInput.value.trim().length > 0));
+emailInput.addEventListener("input", () => validate(emailInput, "emailError", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)));
+msgInput.addEventListener("input",   () => validate(msgInput,   "messageError", msgInput.value.trim().length > 0));
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const nameOk  = validate(nameInput,  "nameError",  nameInput.value.trim().length > 0);
+  const emailOk = validate(emailInput, "emailError", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value));
+  const msgOk   = validate(msgInput,   "messageError", msgInput.value.trim().length > 0);
+
+  if (!nameOk || !emailOk || !msgOk) return;
+
+  // Skicka formulärdata till Netlify via fetch
+  try {
+    const formData = new FormData(form);
+    await fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    });
+
+    // Lyckat – visa bekräftelse och dölj formuläret
+    form.style.display = "none";
+    success.hidden = false;
+
+  } catch {
+    // Om något går fel – visa ett enkelt felmeddelande
+    const submitBtn = form.querySelector(".form-submit");
+    submitBtn.textContent = "Något gick fel – försök igen";
+    submitBtn.style.background = "#c0392b";
+  }
+});

@@ -67,11 +67,12 @@
             <li>.NET</li>
             <li>HTML</li>
             <li>CSS</li>
+            <li>JavaScript</li>
             <li>Git</li>
-            <li>WPF</li>
             <li>XAML</li>
             <li>SQL</li>
             <li>Visual Studio</li>
+            <li>VS Code</li>
             <li>Agila metoder</li>
           </ul>
         </section>
@@ -193,21 +194,158 @@
           </ul>
         </section>
 
-        <!-- Highlight-projekt -->
-        <section class="card highlight mb-0">
-          <h2 class="mb-3">Projekt (highlight)</h2>
-          <p class="mb-2">
-            <strong>Projektets namn:</strong> kort beskrivning av vad det gör.
-          </p>
-          <p class="mb-0">
-            <a
-              href="https://github.com/DITT-NAMN/DITT-REPO"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Se projekt på GitHub
-            </a>
-          </p>
+        <!-- Projektgalleri -->
+        <section class="card" id="projects">
+          <h2>Projekt</h2>
+          <div class="project-grid">
+
+            <article class="project-card">
+              <div class="project-top">
+                <h3>CryptoScanner</h3>
+                <a
+                  href="https://github.com/ellenlinnea/CryptoScanner"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="project-link"
+                  aria-label="Se CryptoScanner på GitHub"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+              <p class="project-desc">
+                Webbapplikation för att söka efter och visa information om kryptovalutor i realtid via ett externt API. Möjlighet att spara valutor i en lokal databas för enkel återkoppling.
+              </p>
+              <ul class="pill-list project-pills">
+                <li>C#</li>
+                <li>Razor Pages</li>
+                <li>ASP.NET Core</li>
+                <li>SQL</li>
+                <li>API</li>
+              </ul>
+            </article>
+
+            <article class="project-card">
+              <div class="project-top">
+                <h3>Recepthanteraren</h3>
+                <a
+                  href="https://github.com/ellenlinnea/OPG_Linnea_Schildt_SYSM9"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="project-link"
+                  aria-label="Se Recepthanteraren på GitHub"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+              <p class="project-desc">
+                Skrivbordsapplikation för recepthantering med inloggningssystem. Användare kan skapa konton, logga in samt lägga till, redigera, visa och sortera sina recept.
+              </p>
+              <ul class="pill-list project-pills">
+                <li>C#</li>
+                <li>WPF</li>
+                <li>XAML</li>
+                <li>.NET</li>
+              </ul>
+            </article>
+
+            <article class="project-card">
+              <div class="project-top">
+                <h3>ChalkboardChat</h3>
+                <a
+                  href="https://github.com/ellenlinnea/ChalkboardChat"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="project-link"
+                  aria-label="Se ChalkboardChat på GitHub"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+              <p class="project-desc">
+                Grupprojekt. En enkel social plattform där användare kan registrera sig, logga in och publicera meddelanden som alla kan se – ungefär som ett minimalistiskt socialt flöde.
+              </p>
+              <ul class="pill-list project-pills">
+                <li>C#</li>
+                <li>Razor Pages</li>
+                <li>ASP.NET Core</li>
+              </ul>
+            </article>
+
+            <article class="project-card">
+              <div class="project-top">
+                <h3>Användarhantering</h3>
+                <a
+                  href="https://github.com/ellenlinnea/User_Hantering_ExtraProjekt"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="project-link"
+                  aria-label="Se Användarhantering på GitHub"
+                >
+                  GitHub ↗
+                </a>
+              </div>
+              <p class="project-desc">
+                Eget projekt med rollbaserad åtkomstkontroll. Olika användarmodeller styr vad man kan se och göra efter inloggning. Använder en MockDB för datalagring.
+              </p>
+              <ul class="pill-list project-pills">
+                <li>C#</li>
+                <li>WPF</li>
+                <li>XAML</li>
+                <li>.NET</li>
+              </ul>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- Kontaktformulär -->
+        <section class="card" id="contact">
+          <h2>Kontakt</h2>
+          <p class="contact-intro">Vill du komma i kontakt? Fyll i formuläret så hör jag av mig.</p>
+
+          <form id="contactForm" name="kontakt" method="POST" data-netlify="true" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactName">Namn</label>
+                <input
+                  type="text"
+                  id="contactName"
+                  name="name"
+                  placeholder="Ditt namn"
+                  autocomplete="name"
+                />
+                <span class="form-error" id="nameError">Ange ditt namn.</span>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">E-post</label>
+                <input
+                  type="email"
+                  id="contactEmail"
+                  name="email"
+                  placeholder="din@email.se"
+                  autocomplete="email"
+                />
+                <span class="form-error" id="emailError">Ange en giltig e-postadress.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Meddelande</label>
+              <textarea
+                id="contactMessage"
+                name="message"
+                rows="4"
+                placeholder="Vad vill du säga?"
+              ></textarea>
+              <span class="form-error" id="messageError">Skriv ett meddelande.</span>
+            </div>
+            <button type="submit" class="form-submit">Skicka meddelande</button>
+          </form>
+
+          <!-- Bekräftelsemeddelande – dolt tills formuläret skickas -->
+          <div class="form-success" id="formSuccess" hidden>
+            <span class="form-success-icon">✓</span>
+            <p>Tack! Jag återkommer så snart jag kan.</p>
+          </div>
         </section>
       </main>
     </div>
