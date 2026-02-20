@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="sv">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,7 +15,7 @@
   <body>
     <canvas id="bg-canvas" aria-hidden="true"></canvas>
     <div class="page">
-      <!-- Header som går över båda spalter -->
+      <!-- Header spanning both columns -->
       <header class="header">
         <div class="header-text">
           <h1>Linnea Schildt</h1>
@@ -23,23 +23,27 @@
         </div>
         <div class="header-actions">
           <a
-            href="index-en.html"
+            href="index.html"
             class="lang-toggle"
-            aria-label="Switch to English"
+            aria-label="Byt till svenska"
           >
-            🌐 English
+            🌐 Svenska
           </a>
-          <button class="theme-toggle" id="themeToggle" aria-label="Byt tema">
-            🌙 Mörkt läge
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle theme"
+          >
+            🌙 Dark mode
           </button>
         </div>
       </header>
 
-      <!-- VÄNSTERSPALT (smal) -->
+      <!-- LEFT COLUMN (narrow) -->
       <aside class="sidebar">
-        <!-- Grupp 1: bild + kontakt (visas högt upp på mobil) -->
+        <!-- Group 1: photo + contact (shown high up on mobile) -->
         <div class="sidebar-top">
-          <img class="avatar mb-3" src="bild.jpg" alt="Bild på mig" />
+          <img class="avatar mb-3" src="bild.jpg" alt="Photo of me" />
 
           <section class="card mb-3">
             <ul class="links">
@@ -69,10 +73,10 @@
           </section>
         </div>
 
-        <!-- Grupp 2: kunskaper, språk, förtroendeuppdrag (visas längre ner på mobil) -->
+        <!-- Group 2: skills, languages, positions of trust (shown lower on mobile) -->
         <div class="sidebar-bottom">
           <section class="card mb-3">
-            <h2>Tekniska kunskaper</h2>
+            <h2>Technical Skills</h2>
             <ul class="pill-list">
               <li>C#</li>
               <li>.NET</li>
@@ -84,90 +88,91 @@
               <li>SQL</li>
               <li>Visual Studio</li>
               <li>VS Code</li>
-              <li>Agila metoder</li>
+              <li>Agile methods</li>
             </ul>
           </section>
 
           <section class="card mb-3">
-            <h2>Språk</h2>
+            <h2>Languages</h2>
             <ul class="links">
-              <li>Svenska</li>
-              <li>Engelska</li>
+              <li>Swedish</li>
+              <li>English</li>
             </ul>
           </section>
 
           <section class="card mb-3">
-            <h2>Förtroendeuppdrag</h2>
+            <h2>Positions of Trust</h2>
             <ul class="positionOfTrust">
-              <li>Suppleant i Snapping Turtle AB</li>
+              <li>Alternate Board Member at Snapping Turtle AB</li>
               <li>
-                Studentrepresentant i ledningsgruppen för
-                systemutvecklarutbildningen - Newton
+                Student Representative on the Management Board of the Systems
+                Development Programme – Newton
               </li>
-              <li>Ledamot i Svenska Ju‑jutsuförbundets styrelse</li>
-              <li>Ledamot i Malmö Ju‑jutsuklubbs styrelse</li>
+              <li>Board Member of the Swedish Ju‑jutsu Federation</li>
+              <li>Board Member of Malmö Ju‑jutsu Club</li>
             </ul>
           </section>
         </div>
       </aside>
 
-      <!-- HÖGERSPALT -->
+      <!-- RIGHT COLUMN -->
       <main class="main d-flex flex-column">
         <section class="card mb-3">
-          <h2 class="mb-3">Om mig</h2>
+          <h2 class="mb-3">About Me</h2>
           <p class="mb-0">
-            Motiverad och målmedveten blivande systemutvecklare med god
-            samarbetsförmåga, van vid att leda och skapa struktur även när
-            mycket händer samtidigt. Jag trivs i team, kommunicerar tydligt och
-            behåller fokus även i mer komplexa situationer. Mitt mål är att
-            utvecklas till en systemutvecklare som kan bidra till att skapa
-            användarvänliga, hållbara och välstrukturerade lösningar. Jag drivs
-            av att lösa problem och vill bygga funktionalitet som gör verklig
-            nytta. Utanför studierna instruerar jag Ju‑jutsu, vilket ytterligare
-            har stärkt mitt ledarskap, tålamod och min förmåga att förklara
-            saker på ett enkelt och tydligt sätt.
+            Motivated and goal-oriented system developer in training with strong
+            collaborative skills, experienced in leading and creating structure
+            even in fast-paced environments. I thrive in teams, communicate
+            clearly and stay focused even in more complex situations. My goal is
+            to grow into a professional who can help create user-friendly,
+            sustainable and well-structured solutions. I am driven by
+            problem-solving and want to build functionality that makes a real
+            difference. Outside of my studies I am also a Ju‑jutsu instructor,
+            which has further strengthened my leadership, patience and ability
+            to explain things in a simple and clear way.
           </p>
         </section>
 
         <section class="card mb-3">
-          <h2 class="mb-3">Utbildning</h2>
+          <h2 class="mb-3">Education</h2>
           <article class="item mb-4">
             <div
               class="item-top d-flex justify-content-between align-items-start mb-2"
             >
-              <h3 class="mb-0">Systemutvecklare C#</h3>
-              <span class="meta">2025–pågående</span>
+              <h3 class="mb-0">System Developer C#</h3>
+              <span class="meta">2025–present</span>
             </div>
             <p class="mb-0">
-              NEWTON - Objektorienterad programmering, Databasutveckling,
-              Testning, Gränssnittsutveckling, Agil systemutveckling.
+              NEWTON - Object-oriented programming, Database development,
+              Testing, Interface development, Agile systems development.
             </p>
           </article>
           <article class="item mb-0">
             <div
               class="item-top d-flex justify-content-between align-items-start mb-2"
             >
-              <h3 class="mb-0">Förskollärarutbildning</h3>
+              <h3 class="mb-0">Preschool Teacher Education</h3>
               <span class="meta">2016–2020</span>
             </div>
-            <p class="mb-0">Malmö Universitet</p>
+            <p class="mb-0">Malmö University</p>
           </article>
         </section>
 
         <section class="card mb-3">
-          <h2 class="mb-3">Erfarenhet</h2>
+          <h2 class="mb-3">Experience</h2>
 
           <article class="item mb-4">
             <div
               class="item-top d-flex justify-content-between align-items-start mb-2"
             >
-              <h3 class="mb-0">Förskollärare</h3>
+              <h3 class="mb-0">Preschool Teacher</h3>
               <span class="meta">2021–2024</span>
             </div>
             <p class="mb-0">
-              Malmö Stad - Nydala förskola. Arbetslagaledare. Utbildades till
-              handledare inom Kompetenslyftet och drev tillsammans med ledningen
-              arbetet med att ta fram en utvecklingsplan.
+              Malmö Stad – Nydala Preschool. Team leader. Completed a supervisor
+              education through a national skills development initiative and was
+              actively involved in driving the work of creating a professional
+              development plan together with management.
             </p>
           </article>
 
@@ -175,40 +180,40 @@
             <div
               class="item-top d-flex justify-content-between align-items-start mb-2"
             >
-              <h3 class="mb-0">Förskollärare</h3>
+              <h3 class="mb-0">Preschool Teacher</h3>
               <span class="meta">2020–2021</span>
             </div>
-            <p class="mb-0">Malmö Stad - Tröskan förskola. Arbetslagaledare.</p>
+            <p class="mb-0">Malmö Stad – Tröskan Preschool. Team leader.</p>
           </article>
 
           <article class="item mb-4">
             <div
               class="item-top d-flex justify-content-between align-items-start mb-2"
             >
-              <h3 class="mb-0">Timvikarie förskola</h3>
+              <h3 class="mb-0">Substitute Preschool Teacher</h3>
               <span class="meta">2016–2019</span>
             </div>
             <p class="mb-0">
-              Sjöbo kommun och Malmö Stad - Arbetade som timvikarie vid behov
-              och stöttade flera arbetslag vid frånvaro.
+              Sjöbo Kommun and Malmö Stad - Worked as a substitute and supported
+              multiple teams during staff absences.
             </p>
           </article>
         </section>
 
         <section class="card mb-3">
-          <h2 class="mb-3">Kurser</h2>
+          <h2 class="mb-3">Courses</h2>
           <ul class="mb-0">
-            <li>Programmering 1 - Malmö komvux (2025)</li>
+            <li>Programming 1 – Malmö Komvux (2025)</li>
             <li>
-              Handledarutbildning - Malmö Universitet (2024, 7.5 hp) - för
-              handledande av universitetsstudenter
+              Mentorship Training – Malmö University (2024, 7.5 credits) – for
+              supervising university students
             </li>
           </ul>
         </section>
 
-        <!-- Projektgalleri -->
+        <!-- Project gallery -->
         <section class="card" id="projects">
-          <h2>Projekt</h2>
+          <h2>Projects</h2>
           <div class="project-grid">
             <article class="project-card">
               <div class="project-top">
@@ -218,15 +223,15 @@
                   target="_blank"
                   rel="noreferrer"
                   class="project-link"
-                  aria-label="Se CryptoScanner på GitHub"
+                  aria-label="View CryptoScanner on GitHub"
                 >
                   GitHub ↗
                 </a>
               </div>
               <p class="project-desc">
-                Webbapplikation för att söka efter och visa information om
-                kryptovalutor i realtid via ett externt API. Möjlighet att spara
-                valutor i en lokal databas för enkel återkoppling.
+                Web application for searching and displaying real-time
+                cryptocurrency data via an external API. Option to save
+                currencies to a local database for easy reference.
               </p>
               <ul class="pill-list project-pills">
                 <li>C#</li>
@@ -239,21 +244,21 @@
 
             <article class="project-card">
               <div class="project-top">
-                <h3>Recepthanteraren</h3>
+                <h3>Recipe Manager</h3>
                 <a
                   href="https://github.com/ellenlinnea/OPG_Linnea_Schildt_SYSM9"
                   target="_blank"
                   rel="noreferrer"
                   class="project-link"
-                  aria-label="Se Recepthanteraren på GitHub"
+                  aria-label="View Recipe Manager on GitHub"
                 >
                   GitHub ↗
                 </a>
               </div>
               <p class="project-desc">
-                Skrivbordsapplikation för recepthantering med inloggningssystem.
-                Användare kan skapa konton, logga in samt lägga till, redigera,
-                visa och sortera sina recept.
+                Desktop application for recipe management with a login system.
+                Users can create accounts, log in, and add, edit, view and sort
+                their recipes.
               </p>
               <ul class="pill-list project-pills">
                 <li>C#</li>
@@ -271,15 +276,15 @@
                   target="_blank"
                   rel="noreferrer"
                   class="project-link"
-                  aria-label="Se ChalkboardChat på GitHub"
+                  aria-label="View ChalkboardChat on GitHub"
                 >
                   GitHub ↗
                 </a>
               </div>
               <p class="project-desc">
-                Grupprojekt. En enkel social plattform där användare kan
-                registrera sig, logga in och publicera meddelanden som alla kan
-                se – ungefär som ett minimalistiskt socialt flöde.
+                Group project. A simple social platform where users can
+                register, log in and post messages visible to everyone – like a
+                minimalist social feed.
               </p>
               <ul class="pill-list project-pills">
                 <li>C#</li>
@@ -290,21 +295,21 @@
 
             <article class="project-card">
               <div class="project-top">
-                <h3>Användarhantering</h3>
+                <h3>User Management</h3>
                 <a
                   href="https://github.com/ellenlinnea/User_Hantering_ExtraProjekt"
                   target="_blank"
                   rel="noreferrer"
                   class="project-link"
-                  aria-label="Se Användarhantering på GitHub"
+                  aria-label="View User Management on GitHub"
                 >
                   GitHub ↗
                 </a>
               </div>
               <p class="project-desc">
-                Eget projekt med rollbaserad åtkomstkontroll. Olika
-                användarmodeller styr vad man kan se och göra efter inloggning.
-                Använder en MockDB för datalagring.
+                Personal project with role-based access control. Different user
+                models determine what each user can see and do after login. Uses
+                a MockDB for data storage.
               </p>
               <ul class="pill-list project-pills">
                 <li>C#</li>
@@ -317,65 +322,67 @@
         </section>
       </main>
 
-      <!-- Kontaktformulär – eget grid-barn så vi kan styra ordning på mobil -->
+      <!-- Contact form – own grid child to control order on mobile -->
       <section class="card contact-section" id="contact">
-        <h2>Kontakt</h2>
+        <h2>Contact</h2>
         <p class="contact-intro">
-          Vill du komma i kontakt? Fyll i formuläret så hör jag av mig.
+          Want to get in touch? Fill in the form and I'll get back to you.
         </p>
 
         <form
           id="contactForm"
-          name="kontakt"
+          name="contact"
           method="POST"
           data-netlify="true"
           novalidate
         >
           <div class="form-row">
             <div class="form-group">
-              <label for="contactName">Namn</label>
+              <label for="contactName">Name</label>
               <input
                 type="text"
                 id="contactName"
                 name="name"
-                placeholder="Ditt namn"
+                placeholder="Your name"
                 autocomplete="name"
               />
-              <span class="form-error" id="nameError">Ange ditt namn.</span>
+              <span class="form-error" id="nameError"
+                >Please enter your name.</span
+              >
             </div>
             <div class="form-group">
-              <label for="contactEmail">E-post</label>
+              <label for="contactEmail">Email</label>
               <input
                 type="email"
                 id="contactEmail"
                 name="email"
-                placeholder="din@email.se"
+                placeholder="your@email.com"
                 autocomplete="email"
               />
               <span class="form-error" id="emailError"
-                >Ange en giltig e-postadress.</span
+                >Please enter a valid email address.</span
               >
             </div>
           </div>
           <div class="form-group">
-            <label for="contactMessage">Meddelande</label>
+            <label for="contactMessage">Message</label>
             <textarea
               id="contactMessage"
               name="message"
               rows="4"
-              placeholder="Vad vill du säga?"
+              placeholder="What would you like to say?"
             ></textarea>
             <span class="form-error" id="messageError"
-              >Skriv ett meddelande.</span
+              >Please write a message.</span
             >
           </div>
-          <button type="submit" class="form-submit">Skicka meddelande</button>
+          <button type="submit" class="form-submit">Send message</button>
         </form>
 
-        <!-- Bekräftelsemeddelande – dolt tills formuläret skickas -->
+        <!-- Confirmation message – hidden until form is submitted -->
         <div class="form-success" id="formSuccess" hidden>
           <span class="form-success-icon">✓</span>
-          <p>Tack! Jag återkommer så snart jag kan.</p>
+          <p>Thank you! I'll get back to you as soon as I can.</p>
         </div>
       </section>
     </div>
@@ -385,6 +392,6 @@
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
-    <script src="cv.js"></script>
+    <script src="cv-en.js"></script>
   </body>
 </html>

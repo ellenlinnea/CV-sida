@@ -214,6 +214,36 @@ body {
 }
 
 /* ============================================================
+   HEADER-KNAPPAR (tema + språk)
+   ============================================================ */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.lang-toggle {
+  background: var(--toggle-bg);
+  color: var(--toggle-color);
+  border: none;
+  border-radius: 50px;
+  padding: 0.45rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, transform 0.15s;
+}
+
+.lang-toggle:hover {
+  transform: scale(1.05);
+  background: var(--color-accent-light);
+  color: var(--toggle-color);
+}
+
+/* ============================================================
    DARK MODE TOGGLE-KNAPP
    ============================================================ */
 .theme-toggle {
@@ -228,7 +258,6 @@ body {
   white-space: nowrap;
   transition: background 0.2s, color 0.2s, transform 0.15s;
   flex-shrink: 0;
-  align-self: center;
 }
 
 .theme-toggle:hover {
@@ -620,7 +649,7 @@ body {
     font-size: 1.6rem;
   }
 
-  .theme-toggle {
+  .header-actions {
     align-self: flex-start;
   }
 
